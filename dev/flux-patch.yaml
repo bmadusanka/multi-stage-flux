@@ -1,0 +1,22 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  labels:
+    app: hello-debugger
+  name: hello-debugger
+  annotations:
+    fluxcd.io/automated: "true"
+    filter.fluxcd.io/chart-image: semver:~0.1
+  namespace: demo
+spec:
+  chart:
+    repository: https://raw.githubusercontent.com/bmadusanka/hello-world-chart/master
+    name: hello-debugger
+    version: 0.1.0
+  values:
+    ingress:
+      enabled: false
+    image:
+      repository: bhagyam90/hello-world
+      tag: 0.1.0
